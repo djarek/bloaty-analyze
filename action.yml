@@ -1,0 +1,29 @@
+name: 'bloaty-analyze'
+description: 'Run bloaty mcbloatface on your binaries'
+inputs:
+    demangle-mode:
+        description: 'Demangle mode.'
+        default: 'short'
+    domain:
+        description: 'Controls the domains shown.'
+        default: 'both'
+    rows:
+        description: 'Number of rows shown. Set to 0 for unlimited.'
+        default: '20'
+    sources:
+        description: 'Comma separated list of sources.'
+        default: 'symbols'
+    file:
+        description: 'File to be analyzed.'
+        required: true
+    base-file:
+        description: 'Base file used for diffs. Shows absolute sizes if not set.'
+outputs:
+  analysis-result:
+    description: 'Result of the analysis'
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:
+        - echo "::set-output name=analysis-result::$(bloaty -d ${{ inputs.sources }} --demangle=${{ inputs.demangle-mode }} --domain=${{ inputs.domain }} -n ${{ inputs.rows }} ${{ inputs.file }} -- ${{ inputs.base-file }})"
+
