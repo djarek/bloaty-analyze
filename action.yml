@@ -1,5 +1,7 @@
 name: 'bloaty-analyze'
-description: 'Run bloaty mcbloatface on your binaries'
+author: Damian Jarek
+description: 'Run Bloaty McBloatface on your binaries'
+
 inputs:
     demangle-mode:
         description: 'Demangle mode.'
@@ -27,3 +29,6 @@ runs:
     args:
         - echo "::set-output name=analysis-result::$(bloaty -d ${{ inputs.sources }} --demangle=${{ inputs.demangle-mode }} --domain=${{ inputs.domain }} -n ${{ inputs.rows }} ${{ inputs.file }} -- ${{ inputs.base-file }})"
 
+branding:
+    icon: 'bar-chart'
+    color: 'gray-dark'
