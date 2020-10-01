@@ -20,7 +20,7 @@ inputs:
         description: 'Base file used for diffs. Shows absolute sizes if not set.'
 outputs:
   analysis-result:
-    description: 'Result of the analysis'
+    description: 'Result of the bloat analysis'
 runs:
     using: 'docker'
     image: 'Dockerfile'
